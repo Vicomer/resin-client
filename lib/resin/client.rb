@@ -9,15 +9,7 @@ module Resin
 
     def initialize(the_token)
       @requester = Requester.new(the_token)
-    end
-
-    def get_applications
-      applications = []
-      json = @requester.get('application')
-      json['d'].each do |application_json|
-        applications << Models::Application.new(application_json)
-      end
-      applications
+      Thread.current[:requester] = @requester
     end
   end
 end

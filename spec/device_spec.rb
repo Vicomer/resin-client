@@ -1,14 +1,13 @@
 require 'spec_helper'
 
-
-describe 'Application' do
+describe 'Device' do
 
   let(:token){'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MjYwODEsInVzZXJuYW1lIjoiZ2hfbWlsdWNob2siLCJlbWFpbCI6Im1pbHl1a292LmFsZXhleUBnbWFpbC5jb20iLCJjcmVhdGVkX2F0IjoiMjAxNy0xMC0wMlQyMToxMToxNi4wMjJaIiwiZmlyc3RfbmFtZSI6IkFsZXhleSIsImxhc3RfbmFtZSI6Ik1pbHl1a292IiwiY29tcGFueSI6IlZpY29tZXIiLCJhY2NvdW50X3R5cGUiOiJwZXJzb25hbCIsImp3dF9zZWNyZXQiOiJIS1A2SEpXUkE2S0FBNVdFS0VIM0JCU1lTVVFWSUpFVyIsImhhc19kaXNhYmxlZF9uZXdzbGV0dGVyIjpmYWxzZSwic29jaWFsX3NlcnZpY2VfYWNjb3VudCI6W3siY3JlYXRlZF9hdCI6IjIwMTctMTAtMDJUMjE6MTE6MTYuMDIyWiIsImlkIjo3ODAzLCJiZWxvbmdzX3RvX191c2VyIjp7Il9fZGVmZXJyZWQiOnsidXJpIjoiL3Jlc2luL3VzZXIoMjYwODEpIn0sIl9faWQiOjI2MDgxfSwicHJvdmlkZXIiOiJnaXRodWIiLCJyZW1vdGVfaWQiOiI4OTgxNDUyIiwiZGlzcGxheV9uYW1lIjoiTWlsdWNoT0siLCJfX21ldGFkYXRhIjp7InVyaSI6Ii9yZXNpbi9zb2NpYWxfc2VydmljZV9hY2NvdW50KDc4MDMpIiwidHlwZSI6IiJ9fV0sImhhc1Bhc3N3b3JkU2V0IjpmYWxzZSwibmVlZHNQYXNzd29yZFJlc2V0IjpmYWxzZSwicHVibGljX2tleSI6dHJ1ZSwiZmVhdHVyZXMiOltdLCJpbnRlcmNvbVVzZXJOYW1lIjoiZ2hfbWlsdWNob2siLCJpbnRlcmNvbVVzZXJIYXNoIjoiNjQ3MjIzYWRhODE0NTVjOTI4ZTNjMzFiZjEwZjQ3ZGUwYzY1ZTIwNjY2NGE4MDM4Y2Q3ZWQzYjQ1MDI3OTAwMSIsInBlcm1pc3Npb25zIjpbXSwiYXV0aFRpbWUiOjE1MDg5ODIwOTE0MDgsImFjdG9yIjoxODcxNjQ2LCJpYXQiOjE1MTA1Mjg3MzAsImV4cCI6MTUxMTEzMzUzMH0.2Z7gFSLgpf9GWfaD8jFrrOzEqFLhCwYGEGLooU_B6tY'}
-  let!(:client){ Resin::Client.new(token) }
+  let(:client){ Resin::Client.new(token) }
+  let(:application){ client.get_applications.last }
 
-  it 'should list all applications' do
-    apps = Resin::Models::Application.get_applications
-    puts apps.first.class
-    expect(apps.first.class).to eq Resin::Models::Application
+  it 'should should have all the needed data' do
+    devices = application.get_devices
+    expect(devices.size).to eq 2
   end
 end
