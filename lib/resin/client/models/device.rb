@@ -1,6 +1,6 @@
 module Resin
   module Models
-    class Application
+    class Device
 
       attr_reader :name, :id, :device_type
 
