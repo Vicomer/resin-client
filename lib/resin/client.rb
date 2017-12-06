@@ -61,4 +61,9 @@ module Resin
     res = @@requester.get("/v1/device_environment_variable?$filter=device eq #{device_id}")['d'].first
     Models::Variable.new(res)
   end
+
+  def self.update_device_variable(variable_id)
+    res = @@requester.patch("/device_environment_variable(#{variable_id})")['b']
+    Models::Variable.new(res)
+  end
 end

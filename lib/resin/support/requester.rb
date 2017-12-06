@@ -11,9 +11,9 @@ class Requester
   end
 
   def get(endpoint)
-    encoded_url = URI.encode(@host + endpoint)
+    encoded_url = get_uri(endpoint)
     resp = @json_client.get(encoded_url)
-    raise RuntimeError.new("Invalid token") if resp.code == 401
+    check_response(resp)
     resp.body
   end
 
@@ -21,7 +21,23 @@ class Requester
 
   end
 
+  def path(endpoint, payload)
+    encoded_url = get_uri(endpoint)
+    resp = @json_client.patch(encoded_url)
+    check_response(resp)
+    resp.body
+  end
+
   def update_token
     @token = get('/whoami')
+  end
+
+  private
+  def get_uri(endpoint)
+    URI.encode(@host + endpoint)
+  end
+
+  def check_response(resp)
+    raise RuntimeError.new("Invalid token") if resp.code == 401
   end
 end
