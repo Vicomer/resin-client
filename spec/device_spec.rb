@@ -14,4 +14,9 @@ describe 'Device' do
     device = Resin.get_device(883549)
     expect(device.class).to eq Resin::Models::Device
   end
+
+  it 'should return all devices by application id' do
+    devices = Resin.get_devices_by_application(701038)
+    expect(devices.first.class).to eq Resin::Models::Device
+  end
 end

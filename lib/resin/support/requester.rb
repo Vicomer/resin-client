@@ -9,7 +9,8 @@ class Requester
   end
 
   def get(endpoint)
-    resp = @json_client.get(@host + endpoint)
+    encoded_url = URI.encode(@host + endpoint)
+    resp = @json_client.get(encoded_url)
     raise RuntimeError.new("Invalid token") if resp.code == 401
     resp.body
   end
