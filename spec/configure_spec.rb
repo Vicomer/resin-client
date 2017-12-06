@@ -7,6 +7,8 @@ describe 'Device' do
 
   it 'should should have all the needed data' do
     Resin.configure(@token)
-    # Resin.update_token
+    old_token = @token
+    Resin.update_token
+    expect(Resin.requester.token).not_to eq old_token
   end
 end

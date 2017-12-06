@@ -1,6 +1,8 @@
 
 class Requester
 
+  attr_reader :token
+
   def initialize(token)
     @host = Envs.resin_host
     @token = token
@@ -17,5 +19,9 @@ class Requester
 
   def post(endpoint, payload)
 
+  end
+
+  def update_token
+    @token = get('/whoami')
   end
 end
