@@ -58,8 +58,12 @@ module Resin
   end
 
   def self.get_device_variables(device_id)
-    res = @@requester.get("/v1/device_environment_variable?$filter=device eq #{device_id}")['d'].first
-    Models::Variable.new(res)
+    variables = []
+    json = @@requester.get("/v1/device_environment_variable?$filter=device eq #{device_id}")['d']
+    json.each do |variable_json|
+      variables << Models::Variable.new(variable_json)
+    end
+    variables
   end
 
   def self.update_device_variable(variable_id, new_value)
