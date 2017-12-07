@@ -8,4 +8,4 @@
 /spec/reports/
 /tmp/
 .idea
-spec/resources/config.yml
+/spec/resources/config.yml
