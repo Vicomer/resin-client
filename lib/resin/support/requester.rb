@@ -23,7 +23,7 @@ class Requester
 
   def path(endpoint, payload)
     encoded_url = get_uri(endpoint)
-    resp = @json_client.patch(encoded_url)
+    resp = @json_client.patch(encoded_url, payload)
     check_response(resp)
     resp.body
   end
