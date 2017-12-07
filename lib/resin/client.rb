@@ -67,7 +67,7 @@ module Resin
   end
 
   def self.update_device_variable(variable_id, new_value)
-    res = @@requester.patch("/device_environment_variable(#{variable_id})", {data: new_value})['b']
+    res = @@requester.patch("/v1/device_environment_variable(#{variable_id})", {value: new_value})
     Models::Variable.new(res)
   end
 end
