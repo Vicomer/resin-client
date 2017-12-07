@@ -2,7 +2,7 @@ module Resin
   module Models
     class Variable
 
-      attr_reader :id, :env_var_name, :value
+      attr_reader :id, :env_var_name, :value, :name
 
       def initialize(json)
         @id = json['id']
