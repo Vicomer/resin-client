@@ -70,4 +70,14 @@ module Resin
     res = @@requester.patch("/v1/device_environment_variable(#{variable_id})", {value: new_value})
     Models::Variable.new(res)
   end
+
+  #{name: "WPE_URL", value: "Some value"}
+  def self.add_variable(device_id, variable_hash)
+    payload = {
+        device: device_id,
+        env_var_name: variable_hash.keys.first,
+        value: variable_hash.values.first
+    }
+    res = @@requester.post("/v1/device_environment_variable", payload)
+  end
 end

@@ -14,4 +14,8 @@ describe 'Variables' do
     var = Resin.get_device_variables(883549)
     Resin.update_device_variable(86147, "fooo")
   end
+
+  it 'should app a variable' do
+    Resin.add_variable(883549, {WPE_URL: "goo"})
+  end
 end

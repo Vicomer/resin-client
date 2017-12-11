@@ -18,7 +18,10 @@ class Requester
   end
 
   def post(endpoint, payload)
-
+    encoded_url = get_uri(endpoint)
+    resp = @json_client.post(encoded_url, payload)
+    check_response(resp)
+    resp.body
   end
 
   def patch(endpoint, payload)
